@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UpgradeMultiplier from "../Components/Upgrades/1_UpgradeMultiplier";
 import UpgradeDuplicate from "../Components/Upgrades/2_UpgradeDuplicate";
+import UpgradeTriplicate from "../Components/Upgrades/3_UpgradeTriplicate";
 import "./EUT.css";
 
 export default function EUT({ points, setPoints, setPps }) {
@@ -36,7 +37,7 @@ export default function EUT({ points, setPoints, setPps }) {
             />
           </div>
           <div className="upgrade-column">
-            <UpgradeMultiplier
+            <UpgradeTriplicate
               points={points}
               setPoints={setPoints}
               setPointsPerSecond={setPointsPerSecond}

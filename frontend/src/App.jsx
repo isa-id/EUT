@@ -98,7 +98,7 @@ export default function App() {
       <AppBar position="static" color="default" elevation={2}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            EUT
+            3U7
           </Typography>
 
           <Button color="inherit" onClick={handleOpen}>

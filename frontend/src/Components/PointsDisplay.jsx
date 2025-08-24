@@ -1,44 +1,33 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import { Box, Typography, Button } from "@mui/material";
 
 export default function PointsDisplay({ points, pps, onPin }) {
   return (
     <Box
       sx={{
+        minWidth: 180,
+        p: 1.5,
+        borderRadius: 2,
+        background: "linear-gradient(135deg, #e0e0e0, #bdbdbd)",
+        boxShadow: 2,
+        textAlign: "center",
         display: "flex",
         alignItems: "center",
-        gap: 1,
+        justifyContent: "space-between",
       }}
     >
       <Box>
-        <Typography variant="caption" sx={{ color: "#aaa" }}>
+        <Typography variant="subtitle2" sx={{ color: "#333", fontWeight: "bold" }}>
           P$
-          {pps !== 0 && (
-            <span
-              style={{
-                marginLeft: 6,
-                color: "#4caf50",
-                fontWeight: "bold",
-              }}
-            >
-              (+{pps.toFixed(1)}/s)
-            </span>
-          )}
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000" }}>
           {points.toFixed(1)}
         </Typography>
+        <Typography variant="body2" sx={{ color: "#4caf50", fontWeight: "bold" }}>
+          {pps.toFixed(1)} P$/s
+        </Typography>
       </Box>
-
-      {/* Botón de pin integrado */}
-      <Button
-        variant="outlined"
-        size="small"
-        onClick={onPin}
-        sx={{ minWidth: 40 }}
-      >
+      <Button variant="contained" size="small" onClick={onPin}>
         📌
       </Button>
     </Box>

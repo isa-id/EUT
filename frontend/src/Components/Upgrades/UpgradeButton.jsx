@@ -12,7 +12,7 @@ export default function UpgradeButton({ cost, label, description, onUpgrade, dis
       <Card
         variant="outlined"
         sx={{
-          height: "80%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",

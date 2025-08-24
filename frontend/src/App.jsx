@@ -25,39 +25,42 @@ function PinBar({ pinnedCurrencies }) {
         borderTop: "1px solid #444",
         justifyContent: "flex-start",
         overflowX: "auto",
+        zIndex: 1300,
       }}
     >
-      {pinnedCurrencies.map((currency, idx) => (
-        <Box
-          key={idx}
-          sx={{
-            backgroundColor: "#333",
-            borderRadius: 2,
-            px: 2,
-            py: 0.5,
-            minWidth: 120,
-            textAlign: "center",
-          }}
-        >
-          <Typography variant="caption" sx={{ color: "#aaa" }}>
-            {currency.name}
-            {currency.pps !== 0 && (
-              <span
-                style={{
-                  marginLeft: 6,
-                  color: "#4caf50",
-                  fontWeight: "bold",
-                }}
-              >
-                (+{currency.pps.toFixed(1)}/s)
-              </span>
-            )}
-          </Typography>
-          <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-            {currency.points.toFixed(1)}
-          </Typography>
-        </Box>
-      ))}
+      {pinnedCurrencies.length === 0 ? (
+        <Typography sx={{ color: "#bbb" }}>📌 Pin a currency to show it here</Typography>
+      ) : (
+        pinnedCurrencies.map((currency, idx) => (
+          <Box
+            key={idx}
+            sx={{
+              backgroundColor: "#333",
+              borderRadius: 2,
+              px: 2,
+              py: 0.5,
+              minWidth: 150,
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="caption" sx={{ color: "#fff", display: "block", fontWeight: "bold" }}>
+              {currency.name}
+            </Typography>
+            <Typography variant="subtitle2" sx={{ fontWeight: "bold", color: "#fff" }}>
+              {currency.points.toFixed(1)}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: "bold",
+                color: currency.pps > 0 ? "#00e676" : currency.pps < 0 ? "#ff5252" : "#ccc",
+              }}
+            >
+              {currency.pps.toFixed(1)} {currency.name}/s
+            </Typography>
+          </Box>
+        ))
+      )}
     </Box>
   );
 }
@@ -66,41 +69,38 @@ function PinBar({ pinnedCurrencies }) {
 export default function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [points, setPoints] = useState(0);
-  const [pps, setPps] = useState(0); // puntos por segundo
+  const [pps, setPps] = useState(1); // puntos por segundo inicial
   const [pinnedCurrencies, setPinnedCurrencies] = useState([]);
 
   const handleOpen = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  // Manejar pin desde el PointsDisplay
   const handlePin = (name) => {
     if (!pinnedCurrencies.find((c) => c.name === name)) {
-      setPinnedCurrencies([
-        ...pinnedCurrencies,
-        { name, points, pps },
-      ]);
+      setPinnedCurrencies([...pinnedCurrencies, { name, points, pps }]);
     }
   };
 
-  // Actualizar valores en tiempo real en la pinbar
+  // Actualizar valores de pinbar en tiempo real
   useEffect(() => {
     setPinnedCurrencies((prev) =>
-      prev.map((c) =>
-        c.name === "P$" ? { ...c, points, pps } : c
-      )
+      prev.map((c) => (c.name === "P$" ? { ...c, points, pps } : c))
     );
   }, [points, pps]);
 
+  // DEBUG
+  useEffect(() => {
+    console.log("📌 pinnedCurrencies:", pinnedCurrencies);
+  }, [pinnedCurrencies]);
+
   return (
     <>
-      {/* AppBar fija arriba */}
       <AppBar position="static" color="default" elevation={2}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             EUT
           </Typography>
 
-          {/* Botón de ver puntos */}
           <Button color="inherit" onClick={handleOpen}>
             Show currencys
           </Button>
@@ -112,21 +112,14 @@ export default function App() {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
           >
             <div style={{ padding: "8px 16px" }}>
-              {/* Ahora PointsDisplay trae su propio botón de pin */}
-              <PointsDisplay
-                points={points}
-                pps={pps}
-                onPin={() => handlePin("P$")}
-              />
+              <PointsDisplay points={points} pps={pps} onPin={() => handlePin("P$")} />
             </div>
           </Menu>
         </Toolbar>
       </AppBar>
 
-      {/* Contenido del juego */}
       <EUT points={points} setPoints={setPoints} setPps={setPps} />
 
-      {/* Barra de monedas pineadas */}
       <PinBar pinnedCurrencies={pinnedCurrencies} />
     </>
   );

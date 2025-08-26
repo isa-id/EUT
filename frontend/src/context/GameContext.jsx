@@ -5,12 +5,16 @@ import { gameReducer } from "./gameReducer";
 
 const GameContext = createContext();
 
+console.log("📌 GameContext file cargado:", import.meta.url);
+
 const initialState = {
   currencies: initialCurrencies,
   upgrades: initialUpgrades,
 };
 
 export function GameProvider({ children }) {
+  console.log("✅ GameProvider montado con initialState:", initialState);
+
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   return (
@@ -21,5 +25,7 @@ export function GameProvider({ children }) {
 }
 
 export function useGame() {
-  return useContext(GameContext);
+  const context = useContext(GameContext);
+  console.log("useGame hook ejecutado, contexto:", context);
+  return context;
 }

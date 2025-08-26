@@ -3,7 +3,8 @@ import PinnedBar from "../UI/PinnedBar";
 import PointsDisplay from "../UI/PointsDisplay";
 import UpgradesGrid from "../UI/UpgradesGrid";
 
-export default function GameLayout() {
+const GameLayout = () => {
+    console.log("GameLayout se montó ✅");
   return (
     <div className="game-layout">
       <PinnedBar />
@@ -11,4 +12,6 @@ export default function GameLayout() {
       <UpgradesGrid />
     </div>
   );
-}
+};
+
+export default GameLayout;

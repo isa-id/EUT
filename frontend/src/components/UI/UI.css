@@ -1,0 +1,38 @@
+.pinned-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background: #222;
+  color: white;
+  font-size: 14px;
+}
+
+.currency-info {
+  display: flex;
+  gap: 5px;
+}
+
+.points-display {
+  margin: 20px;
+  text-align: center;
+}
+
+.points-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.points-item {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}

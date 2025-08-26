@@ -27,6 +27,8 @@ export function gameReducer(state, action) {
         return u;
       });
 
+      
+
       const upgrade = state.upgrades[currency].find((u) => u.id === upgradeId);
       if (!upgrade || state.currencies[currency].amount < upgrade.cost) {
         return state; // no puede comprar

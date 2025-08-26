@@ -11,7 +11,7 @@ export default function EUT({ points, setPoints, setPps }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setPoints(prev => prev + pointsPerSecond / 10);
-    }, 100); // 100ms -> 10 ticks por segundo
+    }, 20); // 100ms -> 10 ticks por segundo
     return () => clearInterval(interval);
   }, [pointsPerSecond, setPoints]);
 

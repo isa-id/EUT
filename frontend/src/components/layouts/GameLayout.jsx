@@ -5,13 +5,13 @@ import Footer from "./Footer";
 import PageOne from "../pages/PageOne";
 import PageTwo from "../pages/PageTwo";
 import PageThree from "../pages/PageThree";
-import { useAudio } from "../../context/AudioContext";
+import MusicButtons from "../UI/MusicButtons";
 import "./GameLayout.css";
 import "../UI/UI.css";
 
 const GameLayout = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const { bgMusic, toggleMusic, isPlaying } = useAudio();
+  
   const pages = [<PageOne key="page1" />, <PageTwo key="page2" />, <PageThree key="page3" />];
 
   // Map de colores/degradados por página
@@ -22,12 +22,7 @@ const GameLayout = () => {
 ];
 
   // Reproducir / pausar música automáticamente
-  useEffect(() => {
-    if (!bgMusic) return;
-    if (isPlaying) bgMusic.play().catch(() => {});
-    else bgMusic.pause();
-  }, [bgMusic, isPlaying]);
-
+  
   return (
     <div
   className="game-layout gradient-background"
@@ -52,20 +47,8 @@ const GameLayout = () => {
       )}
 
       {/* Contenedor de botones de música */}
-      <div className="music-buttons">
-        <button className="music-btn" onClick={toggleMusic}>
-          {isPlaying ? "⏸" : "▶"}
-        </button>
-        <button
-          className="music-btn"
-          onClick={() => {
-            const nextTrack = (bgMusic?.currentTrack || 0) + 1;
-            if (bgMusic) bgMusic.currentTrack = nextTrack;
-          }}
-        >
-          ⏭
-        </button>
-      </div>
+      
+      <MusicButtons/>
 
       <Footer />
     </div>

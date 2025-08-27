@@ -1,6 +1,10 @@
+import { calculatePPS } from "../utils/calculatePPS";
+import { calculateCost } from "../utils/calculateCost";
+import { calculateUnlocks } from "../utils/calculateUnlocks";
+
 export function gameReducer(state, action) {
   switch (action.type) {
-    case "EARN_POINTS":
+    case "EARN_POINTS": {
       return {
         ...state,
         currencies: {
@@ -11,39 +15,55 @@ export function gameReducer(state, action) {
           },
         },
       };
+    }
 
     case "BUY_UPGRADE": {
       const { currency, upgradeId } = action;
-      const upgradeList = state.upgrades[currency].map((u) => {
-        if (u.id === upgradeId) {
-          if (state.currencies[currency].amount >= u.cost) {
-            return {
+      const currencyData = state.currencies[currency];
+      const upgrade = state.upgrades[currency].find((u) => u.id === upgradeId);
+
+      if (!upgrade) return state;
+
+      // Fondos suficientes
+      if (currencyData.amount < upgrade.cost) return state;
+
+      // Compras máximas
+      if (upgrade.maxPurchases && upgrade.purchased >= upgrade.maxPurchases)
+        return state;
+
+      // Pagar costo
+      const newAmount = currencyData.amount - upgrade.cost;
+
+      // Nuevo costo con helper
+      const newCost = calculateCost(
+        upgrade.cost,
+        upgrade.purchased + 1,
+        upgrade.costMultiplier
+      );
+
+      // Actualizar upgrades
+      const upgradeList = state.upgrades[currency].map((u) =>
+        u.id === upgradeId
+          ? {
               ...u,
               purchased: u.purchased + 1,
-              cost: Math.floor(u.cost * 1.5), // aumenta el costo
-            };
-          }
-        }
-        return u;
-      });
+              cost: newCost,
+            }
+          : u
+      );
 
-      
+      // Recalcular PPS
+      const newPps = calculatePPS(upgradeList);
 
-      const upgrade = state.upgrades[currency].find((u) => u.id === upgradeId);
-      if (!upgrade || state.currencies[currency].amount < upgrade.cost) {
-        return state; // no puede comprar
-      }
-
-      return {
+      // Nuevo estado base
+      let newState = {
         ...state,
         currencies: {
           ...state.currencies,
           [currency]: {
-            ...state.currencies[currency],
-            amount: state.currencies[currency].amount - upgrade.cost,
-            pps:
-              state.currencies[currency].pps +
-              (upgrade.ppsBoost || 0) * (upgrade.purchased + 1),
+            ...currencyData,
+            amount: newAmount,
+            pps: newPps,
           },
         },
         upgrades: {
@@ -51,6 +71,11 @@ export function gameReducer(state, action) {
           [currency]: upgradeList,
         },
       };
+
+      // ✅ Usar helper de desbloqueos
+      newState = calculateUnlocks(newState, upgrade);
+
+      return newState;
     }
 
     default:

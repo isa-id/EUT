@@ -3,6 +3,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import PinnedBar from "./PinnedBar";
 import PageOne from "../pages/PageOne";
+import PageTwo from "../pages/PageTwo";
+import PageThree from "../pages/PageThree";
 // 🔜 luego importaremos más páginas (PageTwo, PageThree...)
 
 import "./GameLayout.css";
@@ -12,8 +14,8 @@ const GameLayout = () => {
 
   const pages = [
     <PageOne key="page1" />,
-    // <PageTwo key="page2" />,
-    // <PageThree key="page3" />,
+    <PageTwo key="page2" />,
+    <PageThree key="page3" />,
   ];
 
   const nextPage = () => {
@@ -27,6 +29,8 @@ const GameLayout = () => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  console.log("Current Page:", currentPage);
 
   return (
     <div className="game-layout">

@@ -1,37 +1,51 @@
+// src/components/Pages/PageOne.js
 import React from "react";
+import { useGame } from "../../context/GameContext";
 import UpgradeCard from "../Upgrades/UpgradeCard";
-import "./PageOne.css";
+import "./Pages.css";
 
 export default function PageOne() {
-  // 🔹 En el futuro esto vendrá desde el contexto
-  const upgrades = [
-    { title: "+1 P$/s", cost: 50, currency: "points" },
-    { title: "x2 P$/s", cost: 200, currency: "points" },
-    { title: "+5 P$/s", cost: 500, currency: "points" },
-    { title: "x10 P$/s", cost: 2000, currency: "points" },
-    { title: "+20 P$/s", cost: 5000, currency: "points" },
+  const { state, dispatch } = useGame();
 
-    { title: "+1 SID/s", cost: 100, currency: "sids" },
-    { title: "x2 SID/s", cost: 500, currency: "sids" },
-    { title: "+5 SID/s", cost: 2000, currency: "sids" },
-    { title: "x10 SID/s", cost: 8000, currency: "sids" },
+  const points = state.currencies.points;
+  const upgrades = state.upgrades.points;
 
-    { title: "x10 riddle/s", cost: 8000, currency: "riddle" },
-  ];
+  const started = upgrades.find((u) => u.id === "p0")?.purchased > 0;
+
+  const handleBuy = (upgrade) => {
+    dispatch({ type: "BUY_UPGRADE", currency: "points", upgradeId: upgrade.id });
+  };
 
   return (
     <main className="page-1">
-      <h2>Points (P$)</h2>
+      <h2>
+        Points (P$): {points.amount} | PPS: {points.pps}
+      </h2>
 
       <div className="upgrades-grid">
-        {upgrades.map((upgrade, index) => (
-          <UpgradeCard 
-            key={index} 
-            title={upgrade.title} 
-            cost={upgrade.cost} 
-            currency={upgrade.currency} // 👈 se pasa al card
-          />
-        ))}
+        {upgrades.map((upgrade) => {
+          const maxed = upgrade.purchased >= (upgrade.maxPurchases || Infinity);
+          const affordable = points.amount >= upgrade.cost;
+          const locked = !started && upgrade.id !== "p0";
+
+          let buttonText = "Comprar";
+          if (locked) buttonText = "Bloqueado";
+          else if (maxed) buttonText = "Máximo alcanzado";
+          else if (!affordable) buttonText = "Te falta dinero";
+
+          return (
+            <UpgradeCard
+              key={upgrade.id}
+              title={`${upgrade.label} (${upgrade.purchased}/${upgrade.maxPurchases ?? "∞"})`}
+              cost={upgrade.cost}
+              currency="points"
+              disabled={locked || !affordable || maxed}
+              maxed={maxed} // ✅ aplicamos la clase maxed
+              buttonText={buttonText}
+              onBuy={() => handleBuy(upgrade)}
+            />
+          );
+        })}
       </div>
     </main>
   );

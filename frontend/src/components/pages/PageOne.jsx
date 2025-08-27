@@ -3,26 +3,34 @@ import UpgradeCard from "../Upgrades/UpgradeCard";
 import "./PageOne.css";
 
 export default function PageOne() {
-  // 🔹 Aquí en el futuro vendrán las upgrades desde context/state
+  // 🔹 En el futuro esto vendrá desde el contexto
   const upgrades = [
-    { title: "+1 P$/s", cost: 50 },
-    { title: "x2 P$/s", cost: 200 },
-    { title: "+5 P$/s", cost: 500 },
-    { title: "x10 P$/s", cost: 2000 },
-    { title: "+20 P$/s", cost: 5000 },
-    { title: "x50 P$/s", cost: 10000 },
-    { title: "+100 P$/s", cost: 20000 },
-    { title: "x200 P$/s", cost: 40000 },
-    { title: "+500 P$/s", cost: 100000 }, // extra para probar el scroll
+    { title: "+1 P$/s", cost: 50, currency: "points" },
+    { title: "x2 P$/s", cost: 200, currency: "points" },
+    { title: "+5 P$/s", cost: 500, currency: "points" },
+    { title: "x10 P$/s", cost: 2000, currency: "points" },
+    { title: "+20 P$/s", cost: 5000, currency: "points" },
+
+    { title: "+1 SID/s", cost: 100, currency: "sids" },
+    { title: "x2 SID/s", cost: 500, currency: "sids" },
+    { title: "+5 SID/s", cost: 2000, currency: "sids" },
+    { title: "x10 SID/s", cost: 8000, currency: "sids" },
+
+    { title: "x10 riddle/s", cost: 8000, currency: "riddle" },
   ];
 
   return (
     <main className="page-1">
-      <h2>Upgrades</h2>
+      <h2>Points (P$)</h2>
 
       <div className="upgrades-grid">
         {upgrades.map((upgrade, index) => (
-          <UpgradeCard key={index} title={upgrade.title} cost={upgrade.cost} />
+          <UpgradeCard 
+            key={index} 
+            title={upgrade.title} 
+            cost={upgrade.cost} 
+            currency={upgrade.currency} // 👈 se pasa al card
+          />
         ))}
       </div>
     </main>

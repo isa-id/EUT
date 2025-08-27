@@ -2,16 +2,25 @@
   width: 100%;
   height: 100%;
   padding-left: 20px;
+  padding-right: 5px;
   background: #1a1a1a;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+  padding-bottom: 16px;
 }
 
 .page-1 h2 {
-
-  margin-bottom: 20px;
+  width: 100%;
+  margin-right: 40px;
+  border-radius: 5px;
+  margin-left: 25px;
+  background-color: rgba(255, 255, 255, 0.166);
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 1.8rem;
   color: #f5f5f5;
 }
@@ -19,10 +28,116 @@
 /* Grid de upgrades */
 .upgrades-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas → 2 filas = 8 upgrades visibles */
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  max-height: 500px; /* ajustable */
+  max-height: 500px;
   overflow-y: auto;
-  padding-right: 10px; /* espacio para scrollbar */
+  padding-right: 10px;
   width: 100%;
+}
+
+/* ==== Upgrade Card ==== */
+.upgrade-card {
+  background: #2a2a2a;
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.upgrade-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.upgrade-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #f5f5f5;
+}
+
+.upgrade-cost {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: #bbbbbb;
+}
+
+/* ==== Botones de Upgrade por Currency ==== */
+.upgrade-button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  color: #fff;
+}
+
+/* Points → Azul */
+.upgrade-button.points {
+  background: linear-gradient(135deg, #4cafef, #1976d2);
+  box-shadow: 0 0 8px rgba(76, 175, 239, 0.7);
+}
+
+.upgrade-button.points:hover:not(:disabled) {
+  background: linear-gradient(135deg, #64b5f6, #1e88e5);
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(76, 175, 239, 0.9);
+}
+
+/* Riddles → Morado */
+.upgrade-button.riddle {
+  background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+  box-shadow: 0 0 8px rgba(156, 39, 176, 0.7);
+}
+
+.upgrade-button.riddle:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ab47bc, #8e24aa);
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(156, 39, 176, 0.9);
+}
+
+
+/* Sids → Verde */
+.upgrade-button.sids {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.7);
+}
+
+.upgrade-button.sids:hover:not(:disabled) {
+  background: linear-gradient(135deg, #66bb6a, #388e3c);
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(76, 175, 80, 0.9);
+}
+
+/* Deshabilitado */
+.upgrade-button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* Animación feedback al click */
+@keyframes button-flash {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(0.95);
+    filter: brightness(1.4);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.upgrade-button:active:not(:disabled) {
+  animation: button-flash 0.25s ease;
 }

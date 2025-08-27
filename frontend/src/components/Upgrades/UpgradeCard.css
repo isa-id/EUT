@@ -19,6 +19,7 @@
   font-size: 1.2rem;
   margin-bottom: 8px;
   color: #f5f5f5;
+  transition: color 0.3s ease;
 }
 
 .upgrade-cost {
@@ -35,7 +36,7 @@
   padding: 8px 12px;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .upgrade-button:hover:not(:disabled) {
@@ -49,41 +50,96 @@
   opacity: 0.6;
 }
 
-/* Animación para feedback */
+/* Animación del botón al hacer click */
 @keyframes button-flash {
-  0% {
-    background: linear-gradient(135deg, #64b5f6, #1e88e5);
-    transform: scale(1);
-  }
-  50% {
-    background: linear-gradient(135deg, #81d4fa, #2196f3);
-    transform: scale(0.95);
-  }
-  100% {
-    background: linear-gradient(135deg, #4cafef, #1976d2);
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }
 
 .upgrade-button:active:not(:disabled) {
   animation: button-flash 0.2s ease;
 }
 
-
-/* --- Efecto Glow en toda la tarjeta --- */
+/* --- Animación Glow de la tarjeta --- */
 @keyframes card-glow {
+  0% { box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+  50% { box-shadow: 0 0 20px var(--glow-color); }
+  100% { box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+}
+
+/* --- Glow dinámico por currency --- */
+.upgrade-card.glow-sids {
+  --glow-color: rgba(76, 175, 80, 0.8); /* Verde */
+  animation: card-glow 0.5s ease;
+}
+.upgrade-card.glow-sids .upgrade-button {
+  background: linear-gradient(135deg, #81c784, #388e3c);
+}
+.upgrade-card.glow-sids .upgrade-title {
+  color: #81c784;
+}
+
+.upgrade-card.glow-riddle {
+  --glow-color: rgba(156, 39, 176, 0.8); /* Morado */
+  animation: card-glow 0.5s ease;
+}
+.upgrade-card.glow-riddle .upgrade-button {
+  background: linear-gradient(135deg, #ba68c8, #7b1fa2);
+}
+.upgrade-card.glow-riddle .upgrade-title {
+  color: #ba68c8;
+}
+
+.upgrade-card.glow-points {
+  --glow-color: rgba(33, 150, 243, 0.8); /* Azul */
+  animation: card-glow 0.5s ease;
+}
+.upgrade-card.glow-points .upgrade-button {
+  background: linear-gradient(135deg, #64b5f6, #1976d2);
+}
+.upgrade-card.glow-points .upgrade-title {
+  color: #64b5f6;
+}
+
+.upgrade-card.glow-sids .upgrade-title {
+  color: #81c784;
+  text-shadow: 0 0 8px rgba(129, 199, 132, 0.8);
+}
+
+.upgrade-card.glow-riddle .upgrade-title {
+  color: #ba68c8;
+  text-shadow: 0 0 8px rgba(186, 104, 200, 0.8);
+}
+
+.upgrade-card.glow-points .upgrade-title {
+  color: #64b5f6;
+  text-shadow: 0 0 8px rgba(100, 181, 246, 0.8);
+}
+
+@keyframes text-glow-pulse {
   0% {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(33, 150, 243, 0.8);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
   }
   100% {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
   }
 }
 
-/* Agregar animación al card */
-.upgrade-card.glow {
-  animation: card-glow 0.5s ease;
+.upgrade-card.glow-sids .upgrade-title {
+  color: #81c784;
+  animation: text-glow-pulse 1.5s ease-in-out infinite;
+}
+
+.upgrade-card.glow-riddle .upgrade-title {
+  color: #ba68c8;
+  animation: text-glow-pulse 1.5s ease-in-out infinite;
+}
+
+.upgrade-card.glow-points .upgrade-title {
+  color: #64b5f6;
+  animation: text-glow-pulse 1.5s ease-in-out infinite;
 }

@@ -1,14 +1,23 @@
 // UpgradeCard.jsx
 import React, { useState } from "react";
 import "./UpgradeCard.css";
+import { useAudio } from "../../context/AudioContext";
 
 export default function UpgradeCard({ title, cost, onBuy, disabled, currency, buttonText, maxed }) {
   const [glow, setGlow] = useState(false);
 
+  const { playSound } = useAudio();
+  
   const handleBuy = () => {
-    if (onBuy && !disabled) onBuy();
+    if (onBuy && !disabled) 
+    onBuy();
+    playSound("/sounds/Touhou Death Sound Effect.mp3"); // efecto de compra
     setGlow(true);
     setTimeout(() => setGlow(false), 500);
+
+    if (disabled) {
+      playSound("/sounds/Locked.mp3"); // efecto de error
+    }
   };
 
   return (

@@ -3,18 +3,18 @@ export const initialCurrencies = {
     name: "P$",
     amount: 0,
     pps: 0,
-    isunlocked: true,
+    isUnlocked: true,
   },
   riddle: {
     name: "R$",
     amount: 0,
     pps: 0,
-    isunlocked: false,
+    isUnlocked: false,
   },
   sids: {
     name: "S$",
     amount: 0,
     pps: 0,
-    isunlocked: false,
+    isUnlocked: false,
   },
 };

@@ -1,4 +1,7 @@
 .game-footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%  ;
   background: #222;
   color: #ccc;
   text-align: center;

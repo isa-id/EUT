@@ -64,35 +64,7 @@
 }
 
 
-/* ==== Upgrade Card ==== */
-.upgrade-card {
-  background: #2a2a2a;
-  border: 2px solid #444;
-  border-radius: 12px;
-  padding: 16px;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
-.upgrade-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-}
-
-.upgrade-title {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  color: #f5f5f5;
-}
-
-.upgrade-cost {
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-  color: #bbbbbb;
-}
 
 /* ==== Botones de Upgrade por Currency ==== */
 .upgrade-button {

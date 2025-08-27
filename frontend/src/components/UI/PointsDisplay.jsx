@@ -6,14 +6,14 @@ const PointsDisplay = () => {
 
   return (
     <div className="points-display">
-      {state.currencies.points.isunlocked && (
+      {state.currencies.points.isUnlocked && (
         <p>Puntos: {state.currencies.points.amount}</p>
       )}
-      {state.currencies.riddle.isunlocked && (
-        <p>Riddles: {state.currencies.riddle.amount}</p>
-      )}
-      {state.currencies.sids.isunlocked && (
+      {state.currencies.sids.isUnlocked && (
         <p>SIDs: {state.currencies.sids.amount}</p>
+      )}
+      {state.currencies.riddle.isUnlocked && (
+        <p>Riddles: {state.currencies.riddle.amount}</p>
       )}
     </div>
   );

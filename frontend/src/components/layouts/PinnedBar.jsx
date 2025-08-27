@@ -1,21 +1,21 @@
 import React from "react";
 import { useGame } from "@/context/GameContext";
+import "./PinnedBar.css";
 
 const PinnedBar = () => {
-  const game = useGame(); // OJO: aquí primero obtenemos el objeto
-  console.log("PinnedBar ejecutado ✅", game);
-
-  if (!game) {
-    return <div>⚠️ No hay contexto disponible</div>;
-  }
-
-  const { state } = game;
+  const { state } = useGame();
 
   return (
     <div className="pinned-bar">
-      <p>P$: {state.currencies.points.amount}</p>
-      <p>R$: {state.currencies.riddle.amount}</p>
-      <p>S$: {state.currencies.sids.amount}</p>
+      {Object.values(state.currencies).map((currency, index) =>
+        currency.isunlocked ? (
+          <div key={index} className="currency-box">
+            <span className="currency-name">{currency.name}:</span>
+            <span className="currency-amount">{currency.amount.toFixed(2)}</span>
+            <span className="currency-pps">(+{currency.pps.toFixed(2)}/s)</span>
+          </div>
+        ) : null
+      )}
     </div>
   );
 };

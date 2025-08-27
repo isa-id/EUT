@@ -1,0 +1,89 @@
+.upgrade-card {
+  background: #2a2a2a;
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.upgrade-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.upgrade-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #f5f5f5;
+}
+
+.upgrade-cost {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: #bbbbbb;
+}
+
+.upgrade-button {
+  background: linear-gradient(135deg, #4cafef, #1976d2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.upgrade-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #64b5f6, #1e88e5);
+  transform: scale(1.05);
+}
+
+.upgrade-button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Animación para feedback */
+@keyframes button-flash {
+  0% {
+    background: linear-gradient(135deg, #64b5f6, #1e88e5);
+    transform: scale(1);
+  }
+  50% {
+    background: linear-gradient(135deg, #81d4fa, #2196f3);
+    transform: scale(0.95);
+  }
+  100% {
+    background: linear-gradient(135deg, #4cafef, #1976d2);
+    transform: scale(1);
+  }
+}
+
+.upgrade-button:active:not(:disabled) {
+  animation: button-flash 0.2s ease;
+}
+
+
+/* --- Efecto Glow en toda la tarjeta --- */
+@keyframes card-glow {
+  0% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(33, 150, 243, 0.8);
+  }
+  100% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Agregar animación al card */
+.upgrade-card.glow {
+  animation: card-glow 0.5s ease;
+}

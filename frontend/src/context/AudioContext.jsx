@@ -7,6 +7,7 @@ export const AudioProvider = ({ children }) => {
     "/sounds/Respite.mp3",
     "/sounds/On Little Cat Feet - OneShot OST [KVqwvU49JLg].mp3",
     "/sounds/Limbus Company - Audite Pauper.mp3",
+    "/sounds/Roblox 3008 OST - Friday Theme.mp3",
     "/sounds/House Set of LoLK_ The Reversed Wheel of Fortune ag Guest Mix.mp3",
     "/sounds/Yuyuko's Theme - Border of Life.mp3",
     "/sounds/A Tale of Eternity.mp3",

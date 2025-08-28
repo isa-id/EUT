@@ -7,7 +7,7 @@ const PointsDisplay = () => {
   return (
     <div className="points-display">
       {state.currencies.points.isUnlocked && (
-        <p>Puntos: {state.currencies.points.amount}</p>
+        <p>Points: {state.currencies.points.amount}</p>
       )}
       {state.currencies.sids.isUnlocked && (
         <p>SIDs: {state.currencies.sids.amount}</p>

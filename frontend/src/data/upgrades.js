@@ -63,7 +63,7 @@ export const initialUpgrades = {
     {
       id: "p7",
       label: "Unlock S$/s",
-      cost: 1,
+      cost: 100000,
       purchased: 0,
       maxPurchases: 1,
       unlockCurrency: "sids", // 🔓 desbloquea sids
@@ -84,7 +84,7 @@ export const initialUpgrades = {
     {
       id: "s2",
       label: "x2 S$/s",
-      cost: 2000,
+      cost: 200,
       multiplier: 2,
       purchased: 0,
       maxPurchases: 1,
@@ -93,7 +93,7 @@ export const initialUpgrades = {
     {
       id: "s3",
       label: "Unlock R$/s",
-      cost: 1, // 👈 ahora se compra con S$
+      cost: 400, // 👈 ahora se compra con S$
       purchased: 0,
       maxPurchases: 1,
       unlockCurrency: "riddle", // 🔓 desbloquea riddles usando S$

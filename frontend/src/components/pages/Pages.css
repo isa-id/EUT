@@ -42,8 +42,11 @@
 .page-1 h2,
 .page-2 h2,
 .page-3 h2 {
-  width: 100%;
-  margin: 0px;
+  width: 98%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 30px;
+  margin-right: 30px;
   background-color: rgba(255, 255, 255, 0.166);
   border-radius: 5px;
   font-size: 1.8rem;

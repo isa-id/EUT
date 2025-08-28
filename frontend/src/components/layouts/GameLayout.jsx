@@ -16,7 +16,7 @@ const GameLayout = () => {
 
   // Map de colores/degradados por página
   const gradients = [
-  ["#1b6b9a", "#47b4bcff"], // PageOne (Points)
+  ["#1973a7ff", "#34aebcff"], // PageOne (Points)
   ["#59a043ff", "#1b5e20"], // PageTwo (Sids)
   ["#6a1b9a", "#bc4795ff"], // PageThree (Riddles)
 ];

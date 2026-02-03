@@ -1,13 +1,14 @@
 // GameLayout.jsx
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 import PageOne from "../pages/PageOne";
 import PageTwo from "../pages/PageTwo";
 import PageThree from "../pages/PageThree";
 import MusicButtons from "../UI/MusicButtons";
 import "./GameLayout.css";
 import "../UI/UI.css";
+import Tutorial from "./Tutorial/Tutorial";
 
 const GameLayout = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -51,6 +52,7 @@ const GameLayout = () => {
       <MusicButtons/>
 
       <Footer />
+      <Tutorial />
     </div>
   );
 };

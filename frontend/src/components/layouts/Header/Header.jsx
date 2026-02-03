@@ -1,5 +1,5 @@
 import React from "react";
-import PointsDisplay from "../UI/PointsDisplay";
+import PointsDisplay from "../../UI/PointsDisplay";
 import "./Header.css";
 
 export default function Header() {

@@ -73,9 +73,32 @@ export function gameReducer(state, action) {
       };
 
       // ✅ Usar helper de desbloqueos
-      newState = calculateUnlocks(newState, upgrade);
+      const unlocksResult = calculateUnlocks(newState, upgrade);
+      
+      // Si hubo cambios en desbloqueos (un nuevo currency unlocked)
+      // comparamos si cambió isUnlocked de false a true
+      const newCurrencyKey = upgrade.unlockCurrency;
+      if (newCurrencyKey && !state.currencies[newCurrencyKey]?.isUnlocked && unlocksResult.currencies[newCurrencyKey]?.isUnlocked) {
+         return {
+             ...unlocksResult,
+             tutorial: {
+                 visible: true,
+                 message: `You unlocked ${newCurrencyKey.charAt(0).toUpperCase() + newCurrencyKey.slice(1)}!`,
+             }
+         }
+      }
 
-      return newState;
+      return unlocksResult;
+    }
+
+    case "CLOSE_TUTORIAL": {
+      return {
+        ...state,
+        tutorial: {
+          ...state.tutorial,
+          visible: false,
+        },
+      };
     }
 
     default:

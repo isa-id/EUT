@@ -10,6 +10,7 @@
   align-items: center;
   margin: 10px;
   border-radius: 10px;
+  border: 2px solid #ffffff;
 }
 
 .page-2 {
@@ -23,6 +24,7 @@
   align-items: center;
   margin: 10px;
   border-radius: 10px;
+  border: 2px solid #ffffff;
 }
 
 .page-3 {
@@ -36,6 +38,7 @@
   align-items: center;
   margin: 10px;
   border-radius: 10px;
+  border: 2px solid #ffffff;
 }
 
 /* ==== H2 por página ==== */
@@ -52,6 +55,7 @@
   font-size: 1.8rem;
   color: #f5f5f5;
   padding: 8px 12px;
+  border: 2px solid #b2b2b2;
 }
 
 /* ==== Grid de upgrades ==== */

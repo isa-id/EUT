@@ -8,6 +8,10 @@ const GameContext = createContext();
 const initialState = {
   currencies: initialCurrencies,
   upgrades: initialUpgrades,
+  tutorial: {
+    visible: false,
+    message: "",
+  },
 };
 
 export function GameProvider({ children }) {

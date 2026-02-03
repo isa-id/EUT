@@ -1,0 +1,40 @@
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(34, 34, 34, 0.75);
+  color: #fff;
+  padding: 15px 20px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.points-display {
+  display: flex;
+  gap: 15px;
+}
+
+.points-display p {
+  margin: 0;
+  font-size: 1rem;
+  background: #59689b;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.currency-points {
+  background: rgba(89, 104, 155, 0.5) !important; /* Original Blue */
+}
+
+.currency-sids {
+  background: rgba(40, 167, 69, 0.5) !important; /* Green */
+}
+
+.currency-riddle {
+  background: rgba(103, 53, 134, 0.5) !important; /* Purple */
+}

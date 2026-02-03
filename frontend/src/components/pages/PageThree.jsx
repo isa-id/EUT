@@ -2,6 +2,7 @@
 import React from "react";
 import { useGame } from "../../context/GameContext";
 import UpgradeCard from "../Upgrades/UpgradeCard";
+import { parseCurrency } from "../../utils/parseCurrency";
 import "./Pages.css";
 
 export default function PageThree() {
@@ -26,7 +27,7 @@ export default function PageThree() {
 
   return (
     <main className="page-3">
-      <h2>Riddles (R$): {riddleCurrency.amount} | PPS: {riddleCurrency.pps}</h2>
+      <h2>Riddles (R$): {parseCurrency(riddleCurrency.amount)} | PPS: {parseCurrency(riddleCurrency.pps)}</h2>
 
       <div className="upgrades-grid">
         {upgrades.map((upgrade) => {

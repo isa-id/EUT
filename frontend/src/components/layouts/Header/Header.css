@@ -38,3 +38,8 @@
 .currency-riddle {
   background: rgba(103, 53, 134, 0.5) !important; /* Purple */
 }
+
+.currency-secrets {
+  background: rgba(115, 0, 19, 0.5) !important; /* Dark/Black */
+  color: #f0f0f0;
+}

@@ -5,6 +5,7 @@ import Footer from "./Footer/Footer";
 import PageOne from "../pages/PageOne";
 import PageTwo from "../pages/PageTwo";
 import PageThree from "../pages/PageThree";
+import PageFour from "../pages/PageFour";
 import MusicButtons from "../UI/MusicButtons";
 import "./GameLayout.css";
 import "../UI/UI.css";
@@ -13,13 +14,19 @@ import Tutorial from "./Tutorial/Tutorial";
 const GameLayout = () => {
   const [currentPage, setCurrentPage] = useState(0);
   
-  const pages = [<PageOne key="page1" />, <PageTwo key="page2" />, <PageThree key="page3" />];
+  const pages = [
+      <PageOne key="page1" />, 
+      <PageTwo key="page2" />, 
+      <PageThree key="page3" />,
+      <PageFour key="page4" />
+  ];
 
   // Map de colores/degradados por página
   const gradients = [
-  ["#1973a7ff", "#34aebcff"], // PageOne (Points)
+  ["#1944a7ff", "#2481bbff"], // PageOne (Points)
   ["#59a043ff", "#1b5e20"], // PageTwo (Sids)
   ["#6a1b9a", "#bc4795ff"], // PageThree (Riddles)
+  ["#5e1b31ff", "#a04343ff"], // PageFour (Secrets - Black/Grey)
 ];
 
   // Reproducir / pausar música automáticamente
@@ -33,7 +40,10 @@ const GameLayout = () => {
   }}
 >
       <Header />
-      <div className="page-container">{pages[currentPage]}</div>
+      <div className="page-container">
+        {pages[currentPage]}
+        <MusicButtons />
+      </div>
 
       {/* Navegación entre páginas */}
       {currentPage > 0 && (
@@ -49,7 +59,7 @@ const GameLayout = () => {
 
       {/* Contenedor de botones de música */}
       
-      <MusicButtons/>
+
 
       <Footer />
       <Tutorial />

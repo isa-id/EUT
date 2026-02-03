@@ -10,7 +10,8 @@ const initialState = {
   upgrades: initialUpgrades,
   tutorial: {
     visible: false,
-    message: "",
+    queue: [],
+    current: null, 
   },
 };
 

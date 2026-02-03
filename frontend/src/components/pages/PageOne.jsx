@@ -2,6 +2,7 @@
 import React from "react";
 import { useGame } from "../../context/GameContext";
 import UpgradeCard from "../Upgrades/UpgradeCard";
+import { parseCurrency } from "@/utils/parseCurrency";
 import "./Pages.css";
 
 export default function PageOne() {
@@ -19,7 +20,7 @@ export default function PageOne() {
   return (
     <main className="page-1">
       <h2>
-        Points (P$): {points.amount} | PPS: {points.pps}
+        Points (P$): {parseCurrency(points.amount)} | PPS: {parseCurrency(points.pps)}
       </h2>
 
       <div className="upgrades-grid">

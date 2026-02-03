@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./UpgradeCard.css";
 import { useAudio } from "../../context/AudioContext";
+import { parseCurrency } from "../../utils/parseCurrency";
 
 export default function UpgradeCard({ title, cost, onBuy, disabled, currency, buttonText, maxed }) {
   const [glow, setGlow] = useState(false);
@@ -23,7 +24,7 @@ export default function UpgradeCard({ title, cost, onBuy, disabled, currency, bu
   return (
     <div className={`upgrade-card ${glow ? `glow-${currency}` : ""}`}>
       <h3 className="upgrade-title">{title}</h3>
-      <p className="upgrade-cost"> {maxed ? "Máximo" : "Costo: "+ cost}</p>
+      <p className="upgrade-cost"> {maxed ? "Máximo" : "Costo: "+ parseCurrency(cost)}</p>
       <button
         className={`upgrade-button ${currency} ${maxed ? "maxed" : ""}`}
         onClick={handleBuy}

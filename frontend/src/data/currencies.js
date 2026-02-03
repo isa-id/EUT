@@ -17,4 +17,10 @@ export const initialCurrencies = {
     pps: 0,
     isUnlocked: false,
   },
+  secrets: {
+    name: "T$", // Truths
+    amount: 0,
+    pps: 0,
+    isUnlocked: false,
+  },
 };

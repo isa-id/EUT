@@ -1,7 +1,9 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+# Este workflow ha sido desactivado porque el proyecto usa Vite, no Jekyll.
+# Ver deploy.yml para el despliegue correcto.
 
-on:
+# name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+
+# on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
